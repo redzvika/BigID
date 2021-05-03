@@ -35,9 +35,9 @@ The matcher
 
 The printer aggregator
 
-- reads frequency Reports from BlockingQueue it aggregates all reports to one big frequency map.
-- it stops listening to BlockingQueue after all matchers have completed Atomic counter equals amount of matchers and queue is empty.
-- upon existing from the thread it will print the aggregated information 
+- reads frequency Reports from BlockingQueue .It aggregates all reports to one big frequency map.
+- it stops listening to BlockingQueue after all matchers have completed (Atomic counter equals amount of matchers)  and BlockingQueue is empty.
+- upon exiting from the thread it will print the aggregated information 
 
 
 Output file from execution with big.txt can be found at 

@@ -28,7 +28,7 @@ The simulator reads the lines from the file one line at a time<br>
 The matcher 
 
 - transforms large line to lines
-- searches for the names in each line using java Patter and Match
+- searches for the names in each line using java Pattern and Match (generating regualar expression from the names)
 - for each match found store in FrequencyReport
 - after complete send via BlockingQueue the FrequencyReport
 - increase atomic counter.

@@ -34,4 +34,18 @@ public class Utils {
         }
         return lines;
     }
+
+
+    public static String generateRegexForWords(String [] words){
+        StringBuilder patternString=new StringBuilder();
+        patternString.append("(");
+        for (int i=0;i<words.length;i++){
+            patternString.append("\\b").append(words[i]).append("\\b");
+            if (i!=words.length-1){
+                patternString.append("|");
+            }
+        }
+        patternString.append(")");
+        return  patternString.toString();
+    }
 }

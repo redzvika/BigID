@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-
     <Appenders>
-        <!--        <File name="FILE" fileName="logfile.log" append="true">-->
-        <!--            <PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | %C{2}  - %m%n"/>-->
-        <!--        </File>-->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout
+                    pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
         </Console>
+
+        <RollingFile name="RollingFile"
+                     fileName="./logs/spring-boot-logger-log4j2.log"
+                     filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
     </Appenders>
 
     <Loggers>
-        <Logger name="bigID" level="debug"/>
-
+        <!-- LOG everything at INFO level -->
         <Root level="info">
-            <!--<AppenderRef ref="STDOUT"/>-->
-            <!--  <AppenderRef ref="FILE"/>-->
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
         </Root>
+
+        <!-- LOG "com.baeldung*" at TRACE level -->
+        <logger name="com.bigid" level="debug" additivity="false">
+            <appender-ref ref="Console" />
+        </logger>
     </Loggers>
 
 </Configuration>

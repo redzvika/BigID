@@ -9,18 +9,4 @@ public class Constants {
             "Frank,Scott,Eric,Stephen,Andrew,Raymond,Gregory,Joshua,Jerry,Dennis,Walter,Patrick,Peter,Harold,Douglas,H" +
             "enry,Carl,Arthur,Ryan,Roger").split(",");
 
-    public static Pattern PATTERN = Pattern.compile(generateRegexForWords(Constants.NAMES));
-
-    static String generateRegexForWords(String [] words){
-        StringBuilder patternString=new StringBuilder();
-        patternString.append("(");
-        for (int i=0;i<words.length;i++){
-            patternString.append("\\b").append(words[i]).append("\\b");
-            if (i!=words.length-1){
-                patternString.append("|");
-            }
-        }
-        patternString.append(")");
-        return  patternString.toString();
-    }
 }
